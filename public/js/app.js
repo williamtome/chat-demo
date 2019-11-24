@@ -1845,7 +1845,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      messageText: ''
+    };
+  },
+  methods: {
+    sendMessage: function sendMessage() {
+      this.$emit('messagesent', {
+        message: this.messageText,
+        user: 'José'
+      });
+      this.messageText = '';
+    }
+  }
+});
 
 /***/ }),
 
@@ -1865,17 +1880,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      messages: [{
-        message: 'Oi!',
-        user: 'João'
-      }, {
-        message: 'Olá, João',
-        user: 'Maria'
-      }]
-    };
-  }
+  props: ['messages']
 });
 
 /***/ }),
@@ -1889,7 +1894,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -37985,22 +37989,45 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "chat-composer" }, [
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.messageText,
+          expression: "messageText"
+        }
+      ],
+      attrs: { type: "text", placeholder: "Digite aqui sua mensagem." },
+      domProps: { value: _vm.messageText },
+      on: {
+        keyup: function($event) {
+          if (
+            !$event.type.indexOf("key") &&
+            _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+          ) {
+            return null
+          }
+          return _vm.sendMessage($event)
+        },
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.messageText = $event.target.value
+        }
+      }
+    }),
+    _vm._v(" "),
+    _c(
+      "button",
+      { staticClass: "btn btn-primary", on: { click: _vm.sendMessage } },
+      [_vm._v("Enviar")]
+    )
+  ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "chat-composer" }, [
-      _c("input", {
-        attrs: { type: "text", placeholder: "Digite aqui sua mensagem." }
-      }),
-      _vm._v(" "),
-      _c("button", { staticClass: "btn btn-primary" }, [_vm._v("Enviar")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -50288,7 +50315,22 @@ Vue.component('chat-composer', __webpack_require__(/*! ./components/ChatComposer
  */
 
 var app = new Vue({
-  el: '#app'
+  el: '#app',
+  data: {
+    messages: [{
+      message: 'Oi!',
+      user: 'João'
+    }, {
+      message: 'Olá, João',
+      user: 'Maria'
+    }]
+  },
+  methods: {
+    addMessage: function addMessage(message) {
+      console.log('Mensagem adicionada');
+      this.messages.push(message);
+    }
+  }
 });
 
 /***/ }),
