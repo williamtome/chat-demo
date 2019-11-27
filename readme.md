@@ -2,7 +2,7 @@
 
 <p align="center">
     <img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRoFCGwc949wlgaBvPgILRu_hrlsmeOBiufo5jNJSlKUy3XXW2C" width="400">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRoFCGwc949wlgaBvPgILRu_hrlsmeOBiufo5jNJSlKUy3XXW2C" width="100">
 </p>
 
 I'm development a web chat as Proof of Concept to the feature in my company project using Laravel 5.8.* and VueJS.
