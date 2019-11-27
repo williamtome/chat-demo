@@ -2,16 +2,15 @@
 
 <p align="center">
     <img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRoFCGwc949wlgaBvPgILRu_hrlsmeOBiufo5jNJSlKUy3XXW2C" width="100">
 </p>
 
 I'm development a web chat as Proof of Concept to the feature in my company project using Laravel 5.8.* and VueJS.
 
 ## Resources Used
 
-- **[Download and install Composer](https://getcomposer.org/download/).
-- **[Install Laravel 5.8 with Composer](https://laravel.com/docs/5.8/installation#installing-laravel).
-- **[Download and install XAMPP with PHP 7.3.10 and MySQL 5.7](https://www.apachefriends.org/pt_br/download.html).
+- [Download and install Composer](https://getcomposer.org/download/).
+- [Install Laravel 5.8 with Composer](https://laravel.com/docs/5.8/installation#installing-laravel).
+- [Download and install XAMPP with PHP 7.3.10 and MySQL 5.7](https://www.apachefriends.org/pt_br/download.html).
 
 ## What I'm Going to Learn?
 
