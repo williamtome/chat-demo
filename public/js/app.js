@@ -1848,14 +1848,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      messageText: ''
+      messageText: '',
+      username: $('#navbarDropdown').text()
     };
   },
   methods: {
     sendMessage: function sendMessage() {
       this.$emit('messagesent', {
         message: this.messageText,
-        user: 'José'
+        user: {
+          name: this.username
+        }
       });
       this.messageText = '';
     }
@@ -1873,6 +1876,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -6416,7 +6422,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.chat-log .chat-message:nth-child(even){\r\n    background-color: #ccc;\n}\r\n", ""]);
+exports.push([module.i, "\n.chat-log .chat-message:nth-child(even){\r\n    background-color: #add8e6;\n}\n.empty {\r\n    padding: 1rem;\r\n    background-color: #add8e6;\r\n    text-align: center;\n}\r\n", ""]);
 
 // exports
 
@@ -38052,13 +38058,31 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "chat-log" },
-    _vm._l(_vm.messages, function(message, index) {
-      return _c("chat-message", {
-        key: index,
-        attrs: { message: message.message, user: message.user }
-      })
-    }),
-    1
+    [
+      _vm._l(_vm.messages, function(message, index) {
+        return _c("chat-message", {
+          key: index,
+          attrs: { message: message.message, user: message.user }
+        })
+      }),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.messages.length === 0,
+              expression: "messages.length === 0"
+            }
+          ],
+          staticClass: "empty"
+        },
+        [_vm._v("\n        Nenhuma mensagem!\n    ")]
+      )
+    ],
+    2
   )
 }
 var staticRenderFns = []
@@ -38086,7 +38110,7 @@ var render = function() {
   return _c("div", { staticClass: "chat-message" }, [
     _c("p", [_vm._v(_vm._s(_vm.message))]),
     _vm._v(" "),
-    _c("small", [_vm._v(_vm._s(_vm.user))])
+    _c("small", [_vm._v(_vm._s(_vm.user.name))])
   ])
 }
 var staticRenderFns = []
@@ -50317,18 +50341,25 @@ Vue.component('chat-composer', __webpack_require__(/*! ./components/ChatComposer
 var app = new Vue({
   el: '#app',
   data: {
-    messages: [{
-      message: 'Oi!',
-      user: 'João'
-    }, {
-      message: 'Olá, João',
-      user: 'Maria'
-    }]
+    messages: []
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get('/messages').then(function (res) {
+      _this.messages = res.data;
+    });
   },
   methods: {
     addMessage: function addMessage(message) {
       console.log('Mensagem adicionada');
       this.messages.push(message);
+      axios.post('/messages', message).then(function (res) {
+        console.log(res);
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      });
     }
   }
 });

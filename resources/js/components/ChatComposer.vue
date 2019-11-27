@@ -9,14 +9,17 @@
 export default {
     data(){
         return {
-            messageText: ''
+            messageText: '',
+            username: $('#navbarDropdown').text()
         }
     },
     methods: {
         sendMessage(){
             this.$emit('messagesent', {
                 message: this.messageText,
-                user: 'José'
+                user: {
+                    name: this.username
+                }
             });
             this.messageText = '';
         }
